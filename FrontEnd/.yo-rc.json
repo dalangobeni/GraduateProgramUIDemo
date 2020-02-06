@@ -1,0 +1,35 @@
+{
+  "generator-nextjs-typescript-antd": {
+    "pages": [
+      {
+        "name": "about",
+        "path": "about"
+      },
+      {
+        "name": "index",
+        "path": "index"
+      },
+      {
+        "name": "post",
+        "path": "post"
+      },
+      {
+        "name": "posts",
+        "path": "posts"
+      },
+      {
+        "name": "course",
+        "path": "course"
+      },
+      {
+        "name": "blogs",
+        "path": "blogs"
+      },
+      {
+        "name": "student",
+        "path": "student"
+      }
+    ],
+    "stores": ["Posts", "Student"]
+  }
+}
