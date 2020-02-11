@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Backend.Domain;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Backend.Data
 {
-    public class SchoolContext : DbContext
+    public class SchoolContext : IdentityDbContext<ApplicationUser>
     {
         public SchoolContext (DbContextOptions<SchoolContext> options)
             : base(options)
