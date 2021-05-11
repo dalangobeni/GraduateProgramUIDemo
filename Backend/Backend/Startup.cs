@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Builder;
 using Backend.Api.Middleware;
 using Swashbuckle.AspNetCore.Swagger;
+using AutoMapper;
 
 namespace Backend
 {
@@ -40,6 +41,8 @@ namespace Backend
             services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<SchoolContext>()
             .AddDefaultTokenProviders();
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.Configure<IdentityOptions>(options => {
                 options.Password.RequireDigit = false;
