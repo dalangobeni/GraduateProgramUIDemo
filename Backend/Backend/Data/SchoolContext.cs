@@ -15,10 +15,14 @@ namespace Backend.Data
         {
         }
 
-        public DbSet<Backend.Domain.Course> Course { get; set; }
+        public DbSet<Course> Course { get; set; }
 
-        public DbSet<Backend.Domain.Student> Student { get; set; }
+        public DbSet<Student> Student { get; set; }
 
-        public DbSet<Backend.Domain.Enrollment> Enrollment { get; set; }
+        public DbSet<Enrollment> Enrollment { get; set; }
+
+		public DbSet<Library> Library { get; set; }
+
+        public DbSet<Librarian> Librarian { get; set; }
     }
 }

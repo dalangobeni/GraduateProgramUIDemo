@@ -4,14 +4,16 @@ using Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    partial class SchoolContextModelSnapshot : ModelSnapshot
+    [Migration("20210427075142_newTableLibrary")]
+    partial class newTableLibrary
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,22 +108,6 @@ namespace Backend.Migrations
                     b.ToTable("Enrollment");
                 });
 
-            modelBuilder.Entity("Backend.Domain.Librarian", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("LibrarianNumber");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Surname");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Librarian");
-                });
-
             modelBuilder.Entity("Backend.Domain.Library", b =>
                 {
                     b.Property<Guid>("Id")
@@ -129,17 +115,13 @@ namespace Backend.Migrations
 
                     b.Property<string>("Book");
 
-                    b.Property<bool>("IsPopular");
-
-                    b.Property<Guid?>("LibrarianId");
+                    b.Property<string>("Librarian");
 
                     b.Property<string>("Shelve");
 
                     b.Property<DateTime>("TimeOpen");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LibrarianId");
 
                     b.ToTable("Library");
                 });
@@ -281,13 +263,6 @@ namespace Backend.Migrations
                         .WithMany("Enrollments")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Backend.Domain.Library", b =>
-                {
-                    b.HasOne("Backend.Domain.Librarian", "Librarian")
-                        .WithMany()
-                        .HasForeignKey("LibrarianId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
