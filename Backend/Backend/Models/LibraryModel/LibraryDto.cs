@@ -1,4 +1,5 @@
-﻿using Backend.Domain;
+﻿using AutoMapper;
+using Backend.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Backend.Models.LibraryModel
 {
+	[AutoMap(typeof(Librarian))]
 	public class LibraryDto
 	{
 		public Guid Id { get; set; }
@@ -16,6 +18,7 @@ namespace Backend.Models.LibraryModel
 		public bool IsPopular { get; set; }
 	}
 
+	[AutoMap(typeof(Librarian))]
 	public class LibraryDisplayDto
 	{
 		public Guid Id { get; set; }

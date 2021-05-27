@@ -18,6 +18,8 @@ using Microsoft.AspNetCore.Builder;
 using Backend.Api.Middleware;
 using Swashbuckle.AspNetCore.Swagger;
 using AutoMapper;
+using Backend.Models.LibraryModel;
+using Abp.AspNetCore;
 
 namespace Backend
 {
@@ -34,6 +36,8 @@ namespace Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSingleton(Configuration);
 
             services.AddDbContext<SchoolContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("SchoolContext")));
@@ -96,7 +100,6 @@ namespace Backend
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

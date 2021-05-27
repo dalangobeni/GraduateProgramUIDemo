@@ -88,22 +88,25 @@ namespace Backend.Controllers
 
         // POST: api/Libraries
         [HttpPost]
-        public async Task<ActionResult<LibraryDisplayDto>> CreateNewLibrary([FromBody] LibraryDto library)
+        public async Task<LibraryDisplayDto> CreateNewLibrary([FromBody] LibraryDto library)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                throw new Exception("Bad Request");
             }
 
             library.Book += "Authur: Book Writer";
 
             var libraryEntity = _mapper.Map<Library>(library);
 
+            var librarian = await _context.Librarian.FindAsync(library.LibrarianId);
+
+            libraryEntity.Librarian = librarian;
            var librarySavedEntity = _context.Library.Add(libraryEntity);
             await _context.SaveChangesAsync();
 
 
-            return _mapper.Map<LibraryDisplayDto>(librarySavedEntity);
+            return _mapper.Map<LibraryDisplayDto>(librarySavedEntity.Entity);
         }
 
         // DELETE: api/Libraries/5
